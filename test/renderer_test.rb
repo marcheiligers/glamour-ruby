@@ -66,6 +66,13 @@ module Glamour
       assert_includes result2, "Second"
     end
 
+    it "rejects a nil width assigned after initialization" do
+      renderer = Glamour::Renderer.new
+      renderer.width = nil
+
+      assert_raises(TypeError) { renderer.render("# Hello") }
+    end
+
     it "accepts a Style class" do
       klass = Class.new(Glamour::Style) do
         style :heading do

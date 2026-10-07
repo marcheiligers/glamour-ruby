@@ -30,5 +30,5 @@ Gem::Specification.new do |spec|
   ]
 
   spec.require_paths = ["lib"]
-  spec.extensions = ["ext/glamour/extconf.rb"]
+  spec.extensions = ["ext/glamour/extconf.rb"] unless RUBY_ENGINE == "jruby"
 end

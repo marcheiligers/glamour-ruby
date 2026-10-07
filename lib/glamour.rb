@@ -6,11 +6,15 @@ require "json"
 
 require_relative "glamour/version"
 
-begin
-  major, minor, _patch = RUBY_VERSION.split(".") #: [String, String, String]
-  require_relative "glamour/#{major}.#{minor}/glamour"
-rescue LoadError
-  require_relative "glamour/glamour"
+if RUBY_ENGINE == "jruby"
+  require_relative "glamour/jruby"
+else
+  begin
+    major, minor, _patch = RUBY_VERSION.split(".") #: [String, String, String]
+    require_relative "glamour/#{major}.#{minor}/glamour"
+  rescue LoadError
+    require_relative "glamour/glamour"
+  end
 end
 
 require_relative "glamour/renderer"

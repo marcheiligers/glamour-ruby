@@ -59,6 +59,12 @@ module Glamour
       assert_kind_of String, result
     end
 
+    it "treats a nil width option as the default width" do
+      result = Glamour.render("# Hello", width: nil)
+
+      assert_includes result, "Hello"
+    end
+
     it "renders with style and width" do
       result = Glamour.render("# Hello World", style: "dark", width: 80)
       refute_nil result
